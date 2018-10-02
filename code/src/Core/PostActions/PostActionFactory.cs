@@ -62,6 +62,12 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
             }
+
+            var addNugetToProjectPostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddNugetToProjectPostAction.Id);
+            if (addNugetToProjectPostAction != null)
+            {
+                postActions.Add(new AddNugetToProjectPostAction(genInfo.Template.Identity, addNugetToProjectPostAction, genInfo.Parameters, genInfo.DestinationPath));
+            }
         }
 
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions, bool addingToExistingProject = false)

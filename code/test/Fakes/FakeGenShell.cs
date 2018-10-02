@@ -240,6 +240,11 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        public override void AddNugetToProjects(List<NugetReference> nugetReferences)
+        {
+            throw new NotImplementedException();
+        }
+
         private bool IsCoreProject(string projectPath)
         {
             return projectPath.EndsWith("Core.csproj") || projectPath.EndsWith("Core.vbproj");

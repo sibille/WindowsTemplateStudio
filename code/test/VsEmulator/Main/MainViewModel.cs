@@ -76,6 +76,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
 
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();

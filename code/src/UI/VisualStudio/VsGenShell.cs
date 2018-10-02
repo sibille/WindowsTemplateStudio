@@ -663,5 +663,37 @@ namespace Microsoft.Templates.UI.VisualStudio
                 project.Save();
             }
         }
+
+        public override void AddNugetToProjects(List<NugetReference> nugetReferences)
+        {
+            try
+            {
+                if (IsInternetAvailable())
+                {
+                    foreach (var reference in nugetReferences)
+                    {
+                        var project = GetProjectByPath(reference.Project);
+                        var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                        var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+                        if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                        {
+                            var installer = componentModel.GetService<IVsPackageInstaller>();
+                            installer.InstallPackage("All", project, reference.PackageId, reference.Version, true);
+                        }
+                    }
+                }
+                else
+                {
+                    // TODO: change error message
+                    AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO: change error message
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
+            }
+        }
     }
 }

@@ -35,6 +35,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
 
+        public abstract void AddNugetToProjects(List<NugetReference> nugetReferences);
+
         public abstract string GetActiveProjectNamespace();
 
         public abstract void ShowTaskList();

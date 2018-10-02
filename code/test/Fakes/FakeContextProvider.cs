@@ -21,6 +21,8 @@ namespace Microsoft.Templates.Fakes
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
 
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<string> FilesToOpen { get; } = new List<string>();
