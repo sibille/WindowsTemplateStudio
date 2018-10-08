@@ -240,7 +240,7 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override void AddNugetToProjects(List<NugetReference> nugetReferences)
+        public override void AddNugetToProjectsAsync(List<NugetReference> nugetReferences)
         {
             throw new NotImplementedException();
         }

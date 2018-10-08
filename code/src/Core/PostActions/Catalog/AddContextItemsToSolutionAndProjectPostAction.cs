@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.ToolBox.Shell.AddProjectsToSolution(GenContext.Current.Projects, usesAnyCpu: false);
             GenContext.ToolBox.Shell.AddReferencesToProjects(GenContext.Current.ProjectReferences);
-            GenContext.ToolBox.Shell.AddNugetToProjects(GenContext.Current.NugetReferences);
+            GenContext.ToolBox.Shell.AddNugetToProjectsAsync(GenContext.Current.NugetReferences).FireAndForget();
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
             chrono.Reset();
 

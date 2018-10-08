@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Resources;
 
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
 
-        public abstract void AddNugetToProjects(List<NugetReference> nugetReferences);
+        public abstract Task AddNugetToProjectsAsync(List<NugetReference> nugetReferences);
 
         public abstract string GetActiveProjectNamespace();
 

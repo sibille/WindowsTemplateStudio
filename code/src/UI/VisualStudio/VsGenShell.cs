@@ -16,6 +16,8 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.ProjectSystem;
+using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
@@ -95,15 +97,15 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-                var proj = GetProjectByPath(projectPath);
+                //var proj = GetProjectByPath(projectPath);
 
-                if (proj != null)
-                {
-                    var path = proj.FullName;
+                //if (proj != null)
+                //{
+                //    var path = proj.FullName;
 
-                    Dte.Solution.Remove(proj);
-                    Dte.Solution.AddFromFile(path);
-                }
+                //    Dte.Solution.Remove(proj);
+                //    Dte.Solution.AddFromFile(path);
+                //}
             }
             catch (Exception)
             {
@@ -664,21 +666,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void AddNugetToProjects(List<NugetReference> nugetReferences)
+        public override async System.Threading.Tasks.Task AddNugetToProjectsAsync(List<NugetReference> nugetReferences)
         {
             try
             {
                 foreach (var reference in nugetReferences)
                 {
-                    var project = GetProjectByPath(reference.Project);
-                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+                    //var project = GetProjectByPath(reference.Project);
+                    //var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                    //var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
 
-                    if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
-                    {
-                        var installer = componentModel.GetService<IVsPackageInstaller>();
-                        installer.InstallPackage("All", project, reference.PackageId, reference.Version, true);
-                    }
+                    //if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                    //{
+                    //    var installer = componentModel.GetService<IVsPackageInstaller>();
+                    //    installer.InstallPackage("All", project, reference.PackageId, reference.Version, true);
+                    //}
+
+                    var unconfiguredProject = GetUnconfiguredProject(reference.Project);
+                    var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
+
+                    await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                    await unconfiguredProject.SaveAsync();
                 }
             }
             catch (Exception ex)
@@ -686,6 +694,29 @@ namespace Microsoft.Templates.UI.VisualStudio
                 // TODO: change error message
                 AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
             }
+        }
+
+        private UnconfiguredProject GetUnconfiguredProject(string projFile)
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            // VC implements this on their DTE.Project.Object
+            VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+
+            if (hierarchy != null)
+            {
+                object extObject;
+                if (ErrorHandler.Succeeded(hierarchy.GetProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ExtObject, out extObject)))
+                {
+                    IVsBrowseObjectContext dteProject = extObject as IVsBrowseObjectContext;
+                    if (dteProject != null)
+                    {
+                        var context = dteProject.UnconfiguredProject as UnconfiguredProject;
+                        return context;
+                    }
+                }
+            }
+            return null;
         }
     }
 }
