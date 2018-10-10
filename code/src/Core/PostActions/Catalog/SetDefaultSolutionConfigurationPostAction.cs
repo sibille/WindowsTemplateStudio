@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core.Gen;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -12,9 +13,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private const string Platform = "x86";
         private readonly string uwpProjectGuid = "A5A43C5B-DE2A-4C0C-9213-0A381AF9435A";
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternal()
         {
             GenContext.ToolBox.Shell.SetDefaultSolutionConfiguration(Configuration, Platform, uwpProjectGuid);
+            await Task.CompletedTask;
         }
     }
 }

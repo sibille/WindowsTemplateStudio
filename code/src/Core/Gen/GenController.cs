@@ -52,13 +52,13 @@ namespace Microsoft.Templates.Core.Gen
 
                 ReplaceParamsInFilePath(genInfo.GenerationPath, genInfo.Parameters);
 
-                ExecutePostActions(genInfo, result);
+                await ExecutePostActions(genInfo, result);
             }
 
             chrono.Stop();
             CalculateGenerationTime(chrono.Elapsed.TotalSeconds);
 
-            ExecuteGlobalPostActions();
+            await ExecuteGlobalPostActions();
 
             return genResults;
         }
@@ -106,24 +106,24 @@ namespace Microsoft.Templates.Core.Gen
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.Generation] = generationTime;
         }
 
-        internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
+        internal async Task ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
             // Get post actions from template
             var postActions = PostactionFactory.FindPostActions(genInfo, generationResult);
 
             foreach (var postAction in postActions)
             {
-                postAction.Execute();
+                await postAction.Execute();
             }
         }
 
-        internal void ExecuteGlobalPostActions()
+        internal async Task ExecuteGlobalPostActions()
         {
             var postActions = PostactionFactory.FindGlobalPostActions();
 
             foreach (var postAction in postActions)
             {
-                postAction.Execute();
+                await postAction.Execute();
             }
         }
 

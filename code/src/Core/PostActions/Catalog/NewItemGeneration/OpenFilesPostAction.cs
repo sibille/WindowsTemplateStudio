@@ -4,16 +4,18 @@
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class OpenFilesPostAction : PostAction
     {
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternal()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusOpeningItems);
             GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
             GenContext.Current.FilesToOpen.Clear();
+            await Task.CompletedTask;
         }
     }
 }

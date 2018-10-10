@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternal()
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var fileName = GetFileName(parentGenerationOutputPath);
@@ -49,6 +49,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
+            await Task.CompletedTask;
         }
 
         private string GetFileName(string path)

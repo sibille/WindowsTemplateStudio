@@ -103,8 +103,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 //{
                 //    var path = proj.FullName;
 
-                //    Dte.Solution.Remove(proj);
-                //    Dte.Solution.AddFromFile(path);
+                var proj = GetProjectByPath();
+                proj.IsDirty
+                Dte..Remove(proj);
+                Dte.Solution.AddFromFile(path);
                 //}
             }
             catch (Exception)
@@ -672,21 +674,22 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 foreach (var reference in nugetReferences)
                 {
-                    //var project = GetProjectByPath(reference.Project);
-                    //var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-                    //var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+                    var project = GetProjectByPath(reference.Project);
+                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
 
-                    //if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
-                    //{
-                    //    var installer = componentModel.GetService<IVsPackageInstaller>();
-                    //    installer.InstallPackage("All", project, reference.PackageId, reference.Version, true);
-                    //}
+                    if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                    {
+                        var installer = componentModel.GetService<IVsPackageInstaller>();
+                        installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                    }
+                    project.Save();
 
-                    var unconfiguredProject = GetUnconfiguredProject(reference.Project);
-                    var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
+                    //var unconfiguredProject = GetUnconfiguredProject(reference.Project);
+                    //var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
 
-                    await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
-                    await unconfiguredProject.SaveAsync();
+                    //await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                    //await unconfiguredProject.SaveAsync();
                 }
             }
             catch (Exception ex)
