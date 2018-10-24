@@ -38,6 +38,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract Task AddNugetToProjectsAsync(List<NugetReference> nugetReferences);
 
+        public abstract Task AddProjectsAndNugetsToSolution(List<string> projectFullPaths, List<NugetReference> nugetReferences);
+
         public abstract string GetActiveProjectNamespace();
 
         public abstract void ShowTaskList();

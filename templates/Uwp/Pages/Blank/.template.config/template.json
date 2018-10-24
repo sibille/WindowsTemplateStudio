@@ -59,7 +59,7 @@
           "manualInstructions": [ ],
           "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
           "args": {
-            "packageId" : "Newtonsoft.Json",
+            "packageId" : "newtonsoft.json",
             "version" : "11.0.2",
             "projectPath": "Param_ProjectName.csproj"
           },

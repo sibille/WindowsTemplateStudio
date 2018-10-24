@@ -18,9 +18,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             var chrono = Stopwatch.StartNew();
 
-            GenContext.ToolBox.Shell.AddProjectsToSolution(GenContext.Current.Projects, usesAnyCpu: false);
+            //GenContext.ToolBox.Shell.AddProjectsToSolution(GenContext.Current.Projects, usesAnyCpu: false);
+            
+            GenContext.ToolBox.Shell.AddProjectsAndNugetsToSolution(GenContext.Current.Projects, GenContext.Current.NugetReferences);
+            //await GenContext.ToolBox.Shell.AddNugetToProjectsAsync(GenContext.Current.NugetReferences);
             GenContext.ToolBox.Shell.AddReferencesToProjects(GenContext.Current.ProjectReferences);
-            await GenContext.ToolBox.Shell.AddNugetToProjectsAsync(GenContext.Current.NugetReferences);
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
             chrono.Reset();
 

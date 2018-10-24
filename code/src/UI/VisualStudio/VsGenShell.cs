@@ -103,10 +103,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 //{
                 //    var path = proj.FullName;
 
-                var proj = GetProjectByPath();
-                proj.IsDirty
-                Dte..Remove(proj);
-                Dte.Solution.AddFromFile(path);
+                //var proj = GetProjectByPath();
+                //proj.IsDirty
+                //Dte.Remove(proj);
+                //Dte.Solution.AddFromFile(path);
                 //}
             }
             catch (Exception)
@@ -469,36 +469,36 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void RestorePackages()
         {
-            try
-            {
-                if (IsInternetAvailable())
-                {
-                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+            //try
+            //{
+            //    if (IsInternetAvailable())
+            //    {
+            //        var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
 
-                    var installer = componentModel.GetService<IVsPackageInstaller>();
-                    var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
-                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+            //        var installer = componentModel.GetService<IVsPackageInstaller>();
+            //        var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
+            //        var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
 
-                    var installedPackages = installerServices.GetInstalledPackages().ToList();
-                    var activeProject = GetActiveProject();
+            //        var installedPackages = installerServices.GetInstalledPackages().ToList();
+            //        var activeProject = GetActiveProject();
 
-                    var p = installedPackages.FirstOrDefault();
+            //        var p = installedPackages.FirstOrDefault();
 
-                    if (p != null)
-                    {
-                        uninstaller.UninstallPackage(activeProject, p.Id, false);
-                        installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
-                    }
-                }
-                else
-                {
-                    AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
-            }
+            //        if (p != null)
+            //        {
+            //            uninstaller.UninstallPackage(activeProject, p.Id, false);
+            //            installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
+            //}
         }
 
         public override void CollapseSolutionItems()
@@ -696,6 +696,52 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 // TODO: change error message
                 AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
+            }
+        }
+
+        public override async System.Threading.Tasks.Task AddProjectsAndNugetsToSolution(List<string> projectPaths, List<NugetReference> nugetReferences)
+        {
+            try
+            {     
+                foreach (var projectPath in projectPaths)
+                {
+                    Dte.Solution.AddFromFile(projectPath);
+                    var project = GetProjectByPath(projectPath);
+
+                    var projectNugets = nugetReferences.Where(n => n.Project == projectPath);
+                    foreach (var reference in projectNugets)
+                    {
+                        if (projectPath.Contains("Core"))
+                        {
+                            var unconfiguredProject = GetUnconfiguredProject(reference.Project);
+                            var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
+
+                            await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                            await unconfiguredProject.SaveAsync();
+                        }
+                        else
+                        {
+                            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                            var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+                            var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
+                            var sources = packageSourceProvider.GetSources(true, true);
+                            if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                            {
+                                var installer = componentModel.GetService<IVsPackageInstaller>();
+                                installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                                //var dictreferences = new Dictionary<string, string>();
+                                //dictreferences.Add("newtonsoft.json", "11.0.2");
+                                //installer.InstallPackagesFromVSExtensionRepository("WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb", false,true, true, project, dictreferences);
+                            }
+
+                            project.Save();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
 
