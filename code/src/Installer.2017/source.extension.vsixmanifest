@@ -30,5 +30,6 @@
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2017.Solution" d:TargetPath="|CSharp.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBNet.UWP.VS2017.Solution" d:TargetPath="|VBNet.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Colors\WindowsTemplateStudioColors.pkgdef" d:VsixSubPath="Colors" />
+        <Asset Type="newtonsoft.json.11.0.2.nupkg" d:Source="File" Path="Packages\newtonsoft.json.11.0.2.nupkg" d:VsixSubPath="Packages" />
     </Assets>
 </PackageManifest>
