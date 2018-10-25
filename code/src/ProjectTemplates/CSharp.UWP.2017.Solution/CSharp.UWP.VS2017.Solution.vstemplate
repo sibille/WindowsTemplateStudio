@@ -22,7 +22,7 @@
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
     </CustomParameters>
   </TemplateContent>
-  <WizardData>
+    <WizardData>
      <packages repository="extension" repositoryId="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb">
         <package id="newtonsoft.json" version="11.0.2" />               
     </packages>

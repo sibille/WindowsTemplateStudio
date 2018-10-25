@@ -284,8 +284,16 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Packages\newtonsoft.json.11.0.2.nupkg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>Packages</VSIXSubPath>
+    </Content>
+    <Content Include="Packages\microsoft.netcore.universalwindowsplatform.6.1.7.nupkg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>Packages</VSIXSubPath>
+    </Content>
+    <Content Include="Packages\microsoft.xaml.behaviors.uwp.managed.2.0.0.nupkg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>Packages</VSIXSubPath>
     </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>

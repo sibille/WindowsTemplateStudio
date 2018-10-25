@@ -729,10 +729,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                             if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
                             {
                                 var installer = componentModel.GetService<IVsPackageInstaller>();
-                                installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
-                                //var dictreferences = new Dictionary<string, string>();
-                                //dictreferences.Add("newtonsoft.json", "11.0.2");
-                                //installer.InstallPackagesFromVSExtensionRepository("WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb", false,true, true, project, dictreferences);
+                                //installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                                var dictreferences = new Dictionary<string, string>();
+                                dictreferences.Add("newtonsoft.json", "11.0.2");
+                                installer.InstallPackagesFromVSExtensionRepository("WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb", false, false, true, project, dictreferences);
                             }
 
                             project.Save();
