@@ -286,6 +286,7 @@
     <Content Include="Packages\newtonsoft.json.11.0.2.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>Packages</VSIXSubPath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Packages\microsoft.netcore.universalwindowsplatform.6.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
