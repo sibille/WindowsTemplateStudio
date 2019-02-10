@@ -12,8 +12,6 @@ namespace Microsoft.Templates.Core.Gen
     {
         string ProjectName { get; }
 
-        string SafeProjectName { get; }
-
         string GenerationOutputPath { get; }
 
         string DestinationPath { get; }

@@ -6,7 +6,7 @@
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
-    xmlns:core="clr-namespace:Microsoft.Templates.Core;assembly=Microsoft.Templates.Core"
+    xmlns:core="clr-namespace:Microsoft.Templates.Core"
     xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources">
 
     <ResourceDictionary.MergedDictionaries>
@@ -390,12 +390,12 @@
                                             <Setter Property="Opacity" Value="0" />
                                             <Setter Property="CommandParameter" Value="{Binding}" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
+                                                <!--<DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:Templa:String.Page}">
                                                     <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeletePageCommand}" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Feature}">
                                                     <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteFeatureCommand}" />
-                                                </DataTrigger>
+                                                </DataTrigger>-->
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>

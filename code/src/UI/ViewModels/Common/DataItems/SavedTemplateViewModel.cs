@@ -13,6 +13,7 @@ using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common.DataItems;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
@@ -188,6 +189,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
+        public UserSelectionTemplateInfo GetUserSelection() => new UserSelectionTemplateInfo() { Name = Name, Template = Template };
     }
 }

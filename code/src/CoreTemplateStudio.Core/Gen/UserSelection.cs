@@ -9,6 +9,7 @@ using System.Text;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.ViewModels.Common.DataItems;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -46,11 +47,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
 
-        public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<UserSelectionTemplateInfo> Pages { get; } = new List<UserSelectionTemplateInfo>();
 
-        public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
+        public List<UserSelectionTemplateInfo> Features { get; } = new List<UserSelectionTemplateInfo>();
 
-        public IEnumerable<(string name, ITemplateInfo template)> PagesAndFeatures
+        public IEnumerable<UserSelectionTemplateInfo> PagesAndFeatures
         {
             get
             {
@@ -90,22 +91,22 @@ namespace Microsoft.Templates.Core.Gen
 
             if (Pages.Any())
             {
-                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Pages: '{0}'", string.Join(", ", Pages.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             if (Features.Any())
             {
-                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.name} - {p.template.Name}").ToArray()));
+                sb.AppendFormat("Features: '{0}'", string.Join(", ", Features.Select(p => $"{p.Name} - {p.Template.Name}").ToArray()));
                 sb.AppendLine();
             }
 
             return sb.ToString();
         }
 
-        public void Add((string name, ITemplateInfo template) template)
+        public void Add(UserSelectionTemplateInfo template)
         {
-            switch (template.template.GetTemplateType())
+            switch (template.Template.GetTemplateType())
             {
                 case TemplateType.Page:
                     Pages.Add(template);

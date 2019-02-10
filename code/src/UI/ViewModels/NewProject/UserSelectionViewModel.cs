@@ -93,12 +93,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName, platform);
             foreach (var item in layout)
             {
-                if (item.Template != null)
+                if (item.TemplateInfo != null)
                 {
-                    var template = MainViewModel.Instance.GetTemplate(item.Template);
+                    var template = MainViewModel.Instance.GetTemplate(item.TemplateInfo);
                     if (template != null)
                     {
-                        Add(TemplateOrigin.Layout, template, item.Layout.Name);
+                        Add(TemplateOrigin.Layout, template, item.LayoutItem.Name);
                     }
                 }
             }

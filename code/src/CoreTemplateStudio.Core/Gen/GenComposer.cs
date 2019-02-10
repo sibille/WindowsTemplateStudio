@@ -5,11 +5,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CoreTemplateStudio.Core.Gen;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Composition;
 using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.UI.ViewModels.Common.DataItems;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -34,7 +35,7 @@ namespace Microsoft.Templates.Core.Gen
                 .Distinct();
         }
 
-        public static IEnumerable<(LayoutItem Layout, ITemplateInfo Template)> GetLayoutTemplates(string projectType, string framework, string platform)
+        public static IEnumerable<LayoutInfo> GetLayoutTemplates(string projectType, string framework, string platform)
         {
             var projectTemplate = GetProjectTemplate(projectType, framework, platform);
             var layout = projectTemplate?.GetLayout();
@@ -57,7 +58,7 @@ namespace Microsoft.Templates.Core.Gen
                     }
                     else
                     {
-                        yield return (item, template);
+                        yield return new LayoutInfo() { LayoutItem = item, TemplateInfo = template };
                     }
                 }
             }
@@ -187,14 +188,14 @@ namespace Microsoft.Templates.Core.Gen
                                             && t.GetPlatform() == platform);
         }
 
-        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
+        private static void AddTemplates(IEnumerable<UserSelectionTemplateInfo> templates, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
         {
             foreach (var selectionItem in templates)
             {
-                if (!genQueue.Any(t => t.Name == selectionItem.name && t.Template.Identity == selectionItem.template.Identity))
+                if (!genQueue.Any(t => t.Name == selectionItem.Name && t.Template.Identity == selectionItem.Template.Identity))
                 {
                     AddDependencyTemplates(selectionItem, genQueue, userSelection, newItemGeneration);
-                    var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue, newItemGeneration);
+                    var genInfo = CreateGenInfo(selectionItem.Name, selectionItem.Template, genQueue, newItemGeneration);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                     genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
 
@@ -210,19 +211,19 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
+        private static void AddDependencyTemplates(UserSelectionTemplateInfo selectionItem, List<GenInfo> genQueue, UserSelection userSelection, bool newItemGeneration)
         {
-            var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework, userSelection.Platform);
+            var dependencies = GetAllDependencies(selectionItem.Template, userSelection.Framework, userSelection.Platform);
 
             foreach (var dependencyItem in dependencies)
             {
-                var dependencyTemplate = userSelection.PagesAndFeatures.FirstOrDefault(f => f.template.Identity == dependencyItem.Identity);
+                var dependencyTemplate = userSelection.PagesAndFeatures.FirstOrDefault(f => f.Template.Identity == dependencyItem.Identity);
 
-                if (dependencyTemplate.template != null)
+                if (dependencyTemplate.Template != null)
                 {
-                    if (!genQueue.Any(t => t.Name == dependencyTemplate.name && t.Template.Identity == dependencyTemplate.template.Identity))
+                    if (!genQueue.Any(t => t.Name == dependencyTemplate.Name && t.Template.Identity == dependencyTemplate.Template.Identity))
                     {
-                        var depGenInfo = CreateGenInfo(dependencyTemplate.name, dependencyTemplate.template, genQueue, newItemGeneration);
+                        var depGenInfo = CreateGenInfo(dependencyTemplate.Name, dependencyTemplate.Template, genQueue, newItemGeneration);
                         depGenInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                         depGenInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
                     }
@@ -319,13 +320,13 @@ namespace Microsoft.Templates.Core.Gen
 
             if (string.IsNullOrEmpty(ns))
             {
-                ns = GenContext.Current.SafeProjectName;
+                ns = GenContext.Current.ProjectName;
             }
 
-            // TODO: This is needed to make legaytests work, remove once 3.1 is released
-            genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
-
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
+
+            // TODO: THIS SHOULD BE THE ITEM IN CONTEXT
+            genInfo.Parameters.Add(GenParams.ItemNamespace, ns);
         }
     }
 }
