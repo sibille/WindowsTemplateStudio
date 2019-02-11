@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{51DDB424-2DA2-4871-A042-4F4F9B622515}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer.2017", "src\Installer.2017\Installer.2017.csproj", "{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplates", "ProjectTemplates", "{7709EF0E-35BF-4E09-BFF6-938E1DC91E15}"
@@ -17,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VBNet.UWP.VS2017.Solution",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "src\Utilities\Utilities.csproj", "{356EADB6-D826-494D-B5E1-41245159D5AE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTemplateStudio.Core", "src\CoreTemplateStudio.Core\CoreTemplateStudio.Core.csproj", "{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analyze|Any CPU = Analyze|Any CPU
@@ -24,12 +24,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{51DDB424-2DA2-4871-A042-4F4F9B622515}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
-		{51DDB424-2DA2-4871-A042-4F4F9B622515}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
-		{51DDB424-2DA2-4871-A042-4F4F9B622515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51DDB424-2DA2-4871-A042-4F4F9B622515}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51DDB424-2DA2-4871-A042-4F4F9B622515}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51DDB424-2DA2-4871-A042-4F4F9B622515}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Analyze|Any CPU.ActiveCfg = Analyze|Any CPU
 		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Analyze|Any CPU.Build.0 = Analyze|Any CPU
 		{BB30852B-672A-4EBF-BE58-BC63F6D3C0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -60,6 +54,12 @@ Global
 		{356EADB6-D826-494D-B5E1-41245159D5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{356EADB6-D826-494D-B5E1-41245159D5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{356EADB6-D826-494D-B5E1-41245159D5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}.Analyze|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}.Analyze|Any CPU.Build.0 = Debug|Any CPU
+		{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA28BC3-D84E-4E02-9FC4-51733F334EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

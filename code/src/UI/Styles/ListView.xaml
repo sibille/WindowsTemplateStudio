@@ -390,12 +390,12 @@
                                             <Setter Property="Opacity" Value="0" />
                                             <Setter Property="CommandParameter" Value="{Binding}" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
+                                                <!--<DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
                                                     <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeletePageCommand}" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Feature}">
                                                     <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteFeatureCommand}" />
-                                                </DataTrigger>
+                                                </DataTrigger>-->
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>

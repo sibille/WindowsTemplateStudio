@@ -188,6 +188,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-        public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
+        public ItemInfo GetUserSelection() => new ItemInfo() { Name = Name, Template = Template };
     }
 }

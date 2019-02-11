@@ -119,10 +119,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language) { HomeName = string.Empty };
             var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, ConfigPlatform);
-            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            userSelection.Add(new ItemInfo() { Name = TemplateSelection.Name, Template = TemplateSelection.Template });
             foreach (var dependencyTemplate in dependencies)
             {
-                userSelection.Add((dependencyTemplate.GetDefaultName(), dependencyTemplate));
+                userSelection.Add(new ItemInfo() { Name = dependencyTemplate.GetDefaultName(), Template = dependencyTemplate });
             }
 
             return userSelection;
@@ -140,7 +140,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection GetUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language);
-            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            userSelection.Add(new ItemInfo() { Name = TemplateSelection.Name, Template = TemplateSelection.Template });
             return userSelection;
         }
 

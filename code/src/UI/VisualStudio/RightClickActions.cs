@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 SetContext();
                 var userSelection = WizardLauncher.Instance.StartAddPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
-                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name);
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 SetContext();
                 var userSelection = WizardLauncher.Instance.StartAddFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
-                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name);
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
