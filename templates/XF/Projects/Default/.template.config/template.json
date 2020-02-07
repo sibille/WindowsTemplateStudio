@@ -1,0 +1,109 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "wts.XF.Proj.Default",
+  "shortName": "wts.XF.Proj.Default",
+  "identity": "wts.XF.Proj.Default",
+  "groupIdentity": "wts.XF.Proj.Default",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.projecttype": "Blank|Shell",
+    "wts.frontendframework": "Prism|MVVMBasic",
+    "wts.platform": "XF",
+    "wts.outputToParent": "true",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "0",
+    "wts.licenses": "[Xamarin.Forms](https://github.com/xamarin/Xamarin.Forms/blob/master/LICENSE)|[Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)"
+   },
+  "sourceName": "wts.ProjectName",
+  "guids": [ "131E4D54-D7C2-4C64-9401-068E49A81D94", "8023B836-C4A7-4F62-A8E9-7E2BDD545002", "E4B65B01-7C95-4B14-95B7-43B5343EF8D3" ],
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
+    { "path": "wts.ProjectName.iOS/wts.ProjectName.iOS.csproj" },
+    { "path": "wts.ProjectName.Android/wts.ProjectName.Android.csproj" },
+    { "path": "wts.ProjectName.UWP/wts.ProjectName.UWP.csproj" },
+    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
+  ],
+  "symbols": {
+    "wts.projectName":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Templates.Version"
+    },
+    "wts.generationProjectType":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFrontEndFramework":
+    {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "wts.generationPlatform":
+    {
+      "type": "parameter",
+      "replaces": "Param_Platform"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId": "Newtonsoft.Json",
+        "version": "12.0.3",
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+      },
+      "continueOnError": true
+    },
+    {
+      "description": "Add reference to core project",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex": "0",
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj",
+        "specifiedPathIsTarget": "true"
+      },
+      "continueOnError": true
+    }
+  ]
+}

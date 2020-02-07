@@ -95,6 +95,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 case Platforms.Wpf:
                     WizardStatus.Title = $"{StringRes.NewProjectTitleWPF} ({GenContext.Current.ProjectName})";
                     break;
+                case Platforms.XF:
+                    WizardStatus.Title = $"New Xamarin.Forms app ({GenContext.Current.ProjectName})";
+                    break;
                 default:
                     break;
             }

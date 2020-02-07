@@ -529,6 +529,13 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectTemplates\CSharp.XF.Solution\CSharp.XF.Solution.csproj">
+      <Project>{a924ee2f-fd41-448a-bcfe-0e419d90e1e9}</Project>
+      <Name>CSharp.XF.Solution</Name>
+      <VSIXSubPath>ProjectTemplates</VSIXSubPath>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectTemplates\VBNet.UWP.Solution\VBNet.UWP.Solution.csproj">
       <Project>{2b997e0a-16c8-4b8e-810a-d1d7dafbd760}</Project>
       <Name>VBNet.UWP.Solution</Name>

@@ -1,0 +1,22 @@
+﻿[
+    {
+      "name": "Blank",
+      "displayName": "Blank",
+      "summary": "This basic project is a blank canvas upon which to build your app.",
+      "author": "Microsoft",
+      "order": "2",
+      "licenses": "",
+      "platform":  "XF",
+      "languages": [ "C#" ]
+    },
+    {
+      "name": "Shell",
+      "displayName": "Shell",
+      "summary": "This Shell project adds a shell container to hold child pages. ",
+      "author": "Microsoft",
+      "order": "2",
+      "licenses": "",
+      "platform":  "XF",
+      "languages": [ "C#" ]
+    }
+]

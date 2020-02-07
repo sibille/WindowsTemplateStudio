@@ -1,0 +1,14 @@
+﻿[
+    {
+        "name": "Blank",
+        "templateGroupIdentity": "wts.XF.Page.Blank",
+        "readonly": "false",
+        "projecttype": "Blank|Shell"
+    },
+    {
+        "name": "Xamarin.Essentials",
+        "templateGroupIdentity": "wts.XF.Feat.Xamarin.Essentials",
+        "readonly": "false",
+        "projecttype": "Blank|Shell"
+    }
+]
