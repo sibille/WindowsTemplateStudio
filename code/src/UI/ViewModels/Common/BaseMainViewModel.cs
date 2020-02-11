@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -62,7 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public virtual void Initialize(string platform, string language)
+        public virtual void Initialize(string platform, string language, string requiredWorkload)
         {
             Platform = platform;
             Language = language;
@@ -79,6 +80,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     WizardStatus.CanNotGenerateProjectsMessage = StringRes.CanNotGenerateWPFProjectsMessage;
                     WizardStatus.BlockTemplateSync = true;
                     return;
+                }
+                var vsShell = GenContext.ToolBox.Shell as VsGenShell;
+                if (vsShell != null)
+                {
+                    if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
+                    {
+                        WizardStatus.CanNotGenerateProjectsMessage = $"RequiredWorkload{requiredWorkload}not found";
+                        WizardStatus.BlockTemplateSync = true;
+                        return;
+                    }
                 }
             }
 

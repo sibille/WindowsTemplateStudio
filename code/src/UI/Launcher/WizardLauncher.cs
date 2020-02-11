@@ -31,7 +31,7 @@ namespace Microsoft.Templates.UI.Launcher
         {
         }
 
-        public UserSelection StartNewProject(string platform, string language, BaseStyleValuesProvider provider)
+        public UserSelection StartNewProject(string platform, string language, string requiredWorkload, BaseStyleValuesProvider provider)
         {
             var validationService = new ProjectNameService(GenContext.ToolBox.Repo.ProjectNameValidationConfig, () => new List<string>());
             var projectName = GenContext.Current.ProjectName;
