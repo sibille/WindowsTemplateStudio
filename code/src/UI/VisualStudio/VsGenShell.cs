@@ -102,7 +102,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                 instances.Add(setupInstance[0]);
             }
 
-            return instances[0];
+            ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+            ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+
+            var currentInstance = instances.FirstOrDefault(i => i.GetInstallationVersion() == instance.GetInstallationVersion());
+
+            return currentInstance;
         });
 
         private List<string> installedPackageIds = new List<string>();
@@ -157,6 +162,9 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             if (!installedPackageIds.Any())
             {
+                ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+                ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+
                 foreach (var package in this.vsInstance.Value.GetPackages())
                 {
                     installedPackageIds.Add(package.GetId());

@@ -63,7 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             StylesService.UnsubscribeEventHandlers();
         }
 
-        public virtual void Initialize(string platform, string language, string requiredWorkload)
+        public virtual void Initialize(string platform, string language, IEnumerable<string> requiredWorkload)
         {
             Platform = platform;
             Language = language;
@@ -81,12 +81,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     WizardStatus.BlockTemplateSync = true;
                     return;
                 }
+
                 var vsShell = GenContext.ToolBox.Shell as VsGenShell;
                 if (vsShell != null)
                 {
-                    if (!vsShell.GetInstalledPackageIds().Contains(requiredWorkload))
+                    if (!vsShell.GetInstalledPackageIds().Any(i => requiredWorkload.Contains(i)))
                     {
-                        WizardStatus.CanNotGenerateProjectsMessage = $"RequiredWorkload{requiredWorkload}not found";
+                        WizardStatus.CanNotGenerateProjectsMessage = $"Non of the RequiredWorkload {requiredWorkload.Aggregate((i, j) => i + ", " + j)} was found";
                         WizardStatus.BlockTemplateSync = true;
                         return;
                     }

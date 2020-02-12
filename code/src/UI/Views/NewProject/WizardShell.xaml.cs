@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Gen;
@@ -16,7 +17,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
     {
         private string _language;
         private string _platform;
-        private string _requiredWorkload;
+        private IEnumerable<string> _requiredWorkload;
 
         public static WizardShell Current { get; private set; }
 
@@ -24,7 +25,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(string platform, string language, string requiredWorkload, BaseStyleValuesProvider provider)
+        public WizardShell(string platform, string language, IEnumerable<string> requiredWorkload, BaseStyleValuesProvider provider)
         {
             Current = this;
             _platform = platform;

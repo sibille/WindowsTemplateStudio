@@ -85,7 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public override void Initialize(string platform, string language, string requiredWorkload)
+        public override void Initialize(string platform, string language, IEnumerable<string> requiredWorkload)
         {
             switch (platform)
             {
