@@ -25,7 +25,7 @@
     "wts.rightClickEnabled": "true",
     "wts.outputToParent": "true",
     "wts.requiredSdks":"UAP, Version=10.0.18362.0",
-    "wts.requiredVsWorkload": "Microsoft.VisualStudio.Workload.Universal"
+    "wts.requiredVsWorkload": "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

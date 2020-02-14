@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -68,7 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public bool CanBeAdded
         {
-            private get => _canBeAdded;
+            get => _canBeAdded;
             set => SetProperty(ref _canBeAdded, value);
         }
 
@@ -100,7 +101,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             TemplateType = template.TemplateType;
             MultipleInstance = template.MultipleInstance;
             ItemNameEditable = template.ItemNameEditable;
-            CanBeAdded = MultipleInstance || Count == 0;
+            CanBeAdded = DataService.HasAllVisualStudioWorkloads(template.RequiredVisualStudioWorkloads) && (MultipleInstance || Count == 0);
         }
 
         public void IncreaseSelection()
