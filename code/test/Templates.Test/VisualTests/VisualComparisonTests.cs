@@ -120,21 +120,22 @@ namespace Microsoft.Templates.Test
             ////yield return new object[] { "TabbedNav", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
             foreach (var projectType in GetAllProjectTypes())
             {
-                var otherFrameworks = GetAdditionalCsFrameworks(projectType).Select(f => f[0].ToString()).ToArray();
 
                 var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
                 foreach (var page in pagesThatSupportUiTesting)
                 {
+                    var otherFrameworks = GetAdditionalCsFrameworks(projectType, page).Select(f => f[0].ToString()).ToArray();
+
                     yield return new object[] { projectType, page, otherFrameworks };
                 }
             }
         }
 
-        public static IEnumerable<object[]> GetAdditionalCsFrameworks(string projectType)
+        public static IEnumerable<object[]> GetAdditionalCsFrameworks(string projectType, string page = "")
         {
             //TODO: Remove this once Caliburn Micro Templates are done for MenuBar
-            if (projectType == "MenuBar")
+            if (projectType == "MenuBar" || page == "wts.Page.TabView" || page == "wts.Page.TreeView" || page == "wts.Page.TwoPaneView")
             {
                 foreach (var framework in new[] { "CodeBehind", "MVVMLight", "Prism" })
                 {
@@ -814,34 +815,40 @@ namespace Microsoft.Templates.Test
 
                                 var subItems = appSession.FindElementsByClassName("MenuFlyoutItem");
 
-                                var option = subItems[j].Text;
-
-                                // Don't close the app or the WinAppDriver will throw an error and the test will fail
-                                if (option != "Exit")
+                                if (subItems.Count > 0)
                                 {
-                                    subItems[j].Click();
+                                    var option = subItems[j].Text;
+
+                                    // Don't close the app or the WinAppDriver will throw an error and the test will fail
+                                    if (option != "Exit")
+                                    {
+                                        subItems[j].Click();
+                                    }
+
+                                    await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                                    if (option == "Settings")
+                                    {
+                                        // In a MenuBar, Settings is shown in a flyout - we must dismiss it to avoid confusing other logic that is looking at flyouts
+                                        const byte Escape = 27; // From System.Windows.Forms.Keys
+
+                                        VirtualKeyboard.KeyDown(Escape);
+                                        VirtualKeyboard.KeyUp(Escape);
+                                        await ForOpenedPage(subItems[j].Text, appSession);
+
+                                    }
+                                    else
+                                    {
+                                        await ForOpenedPage(subItems[j].Text, appSession);
+                                    }
                                 }
 
-                                await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
-
-                                if (option == "Settings")
-                                {
-                                    // In a MenuBar, Settings is shown in a flyout - we must dismiss it to avoid confusing other logic that is looking at flyouts
-                                    const byte Escape = 27; // From System.Windows.Forms.Keys
-
-                                    VirtualKeyboard.KeyDown(Escape);
-                                    VirtualKeyboard.KeyUp(Escape);
-                                }
-                                else
-                                {
-                                    await ForOpenedPage(subItems[j].Text, appSession);
-                                }
                             }
                         }
                     }
                     else
                     {
-                        var menuItems = appSession.FindElementsByClassName("ListViewItem");
+                        var menuItems = appSession.FindElementsByClassName("Microsoft.UI.Xaml.Controls.NavigationViewItem");
 
                         foreach (var menuItem in menuItems)
                         {
@@ -871,6 +878,10 @@ namespace Microsoft.Templates.Test
             }
 
             var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
+            if (framework == "CaliburnMicro")
+            {
+                expectedPageCount = expectedPageCount - 3;
+            }
 
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, $"Not all pages were opened successfully. Expected {expectedPageCount} but got {pagesOpenedSuccessfully}.");
         }

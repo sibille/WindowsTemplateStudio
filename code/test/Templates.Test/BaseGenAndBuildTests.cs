@@ -461,19 +461,27 @@ namespace Microsoft.Templates.Test
 
             foreach (var identity in genIdentitiesList)
             {
-                var itemTemplate = _fixture.Templates().FirstOrDefault(t
-                    => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
-                    && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
-                    && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
-
-                var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
-                _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
-
-                // Add multiple pages if supported to check these are handled the same
-                if (includeMultipleInstances && templateInfo.MultipleInstance)
+                if (framework == "CaliburnMicro" && (identity == "wts.Page.TabView" || identity == "wts.Page.TreeView" || identity == "wts.Page.TwoPaneView"))
                 {
-                    _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
+                    // do not add
                 }
+                else
+                {
+                    var itemTemplate = _fixture.Templates().FirstOrDefault(t
+                                        => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
+                                        && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
+                                        && (t.GetFrontEndFrameworkList().Contains(framework) || t.GetFrontEndFrameworkList().Contains(All)));
+
+                    var templateInfo = GenContext.ToolBox.Repo.GetTemplateInfo(itemTemplate, Platforms.Uwp, projectType, framework, _emptyBackendFramework);
+                    _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
+
+                    // Add multiple pages if supported to check these are handled the same
+                    if (includeMultipleInstances && templateInfo.MultipleInstance)
+                    {
+                        _fixture.AddItem(userSelection, templateInfo, BaseGenAndBuildFixture.GetDefaultName);
+                    }
+                }
+                
             }
 
             if (lastPageIsHome)
