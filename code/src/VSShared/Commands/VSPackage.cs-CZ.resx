@@ -121,10 +121,10 @@
     <value>Windows Template Studio</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>Windows Template Studio에서는 마법사 UI를 통해 신속하게 UWP 앱을 빌드할 수 있고, Windows 10 패턴 및 베스트 프랙티스를 바탕으로 개발자의 요구를 충족합니다.</value>
+    <value>Windows Template Studio rychle sestaví aplikaci UWP pomocí uživatelského rozhraní ve formě průvodce tak, aby proměnila vaše potřeby v základ vzorů a osvědčených postupů pro Windows 10.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="RelayCommandPackage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\RelayCommandPackage.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

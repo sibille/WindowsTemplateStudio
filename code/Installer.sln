@@ -83,7 +83,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{C4775484-257
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CS", "CS", "{B1B0A28A-03D6-44E9-85C9-733C52EAB299}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VSShared", "src\VSShared\VSShared.shproj", "{B0571CFE-F953-42C2-9A25-BF61C52128DA}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\VSShared\VSShared.projitems*{b0571cfe-f953-42c2-9a25-bf61c52128da}*SharedItemsImports = 13
+		src\VSShared\VSShared.projitems*{bb30852b-672a-4ebf-be58-bc63f6d3c0de}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analyze|Any CPU = Analyze|Any CPU
 		Debug|Any CPU = Debug|Any CPU
