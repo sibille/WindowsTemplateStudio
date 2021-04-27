@@ -9,7 +9,6 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {

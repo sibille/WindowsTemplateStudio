@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0981b962-ae97-419f-a9e6-d638b6e16a03</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WizardShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Styles\BaseStyleValuesProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Styles\VSStyleValuesProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Styles\WindowsTemplateStudioColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Threading\SafeThreading.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\IPackageInstallerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsGenShell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsOutputPane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsShellExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsTelemetryEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsTelemetryProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VSTelemetryService.cs" />
+  </ItemGroup>
+</Project>

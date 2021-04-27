@@ -52,5 +52,6 @@
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Uwp.RuntimeComponent" d:TargetPath="|CSharp.WinUI.Uwp.RuntimeComponent;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Desktop.ClassLibrary" d:TargetPath="|CSharp.WinUI.Desktop.ClassLibrary;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.WinUI.Uwp.ClassLibrary" d:TargetPath="|CSharp.WinUI.Uwp.ClassLibrary;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="VSIntegration" Path="|VSIntegration|" AssemblyName="|VSIntegration;AssemblyName|" />
     </Assets>
 </PackageManifest>

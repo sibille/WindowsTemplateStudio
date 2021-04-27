@@ -12,7 +12,6 @@ using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Helpers;
 using OpenQA.Selenium.Appium.Windows;

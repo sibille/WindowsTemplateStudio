@@ -17,7 +17,6 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.Utilities.Services;
 using Microsoft.VisualStudio;
@@ -30,6 +29,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.VisualStudio.Threading;
 using NuGet.VisualStudio;
+using VSIntegration.Resources;
 using VSLangProj;
 using Task = System.Threading.Tasks.Task;
 

@@ -470,6 +470,12 @@
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\VSIntegration\VSIntegration.csproj">
+      <Project>{61f096b6-f1e1-484e-8c1d-172d77e2aed4}</Project>
+      <Name>VSIntegration</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
     <ProjectReference Include="..\ItemTemplates\WinUI\Cpp\Cpp.WinUI.BlankPage\Cpp.WinUI.BlankPage.csproj">
       <Project>{B2CA1F11-3CCB-479B-A896-33DF2E9562AE}</Project>
       <Name>Cpp.WinUI.BlankPage</Name>

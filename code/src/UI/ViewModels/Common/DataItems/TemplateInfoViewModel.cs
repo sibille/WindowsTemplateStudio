@@ -121,11 +121,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             MultipleInstance = template.MultipleInstance;
             ItemNameEditable = template.ItemNameEditable;
             CanBeAdded = MultipleInstance || Count == 0;
-            if (!DataService.HasAllVisualStudioWorkloads(template.RequiredVisualStudioWorkloads))
-            {
-                Disabled = true;
-                DisabledMessage = StringRes.TemplateDetailsInfoUnavailableDueToMissingVSWorkload;
-            }
+            //if (!DataService.HasAllVisualStudioWorkloads(template.RequiredVisualStudioWorkloads))
+            //{
+            //    Disabled = true;
+            //    DisabledMessage = StringRes.TemplateDetailsInfoUnavailableDueToMissingVSWorkload;
+            //}
         }
 
         public void IncreaseSelection()

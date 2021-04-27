@@ -139,11 +139,11 @@
                             Margin="1"
                             PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
                             Placement="Bottom">
-                            <Themes:SystemDropShadowChrome
+                            <!--<Themes:SystemDropShadowChrome
                                 x:Name="shadow"
                                 Color="Transparent"
                                 MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                                MinWidth="{Binding ActualWidth, ElementName=templateRoot}">-->
                                 <Border
                                     x:Name="dropDownBorder"
                                     BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
@@ -166,7 +166,7 @@
                                         </Grid>
                                     </ScrollViewer>
                                 </Border>
-                            </Themes:SystemDropShadowChrome>
+                            <!--</Themes:SystemDropShadowChrome>-->
                         </Popup>
                         <ToggleButton
                             x:Name="toggleButton"
@@ -189,10 +189,10 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
+                        <!--<Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                             <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                             <Setter Property="Color" TargetName="shadow" Value="{Binding ComboBoxListBackgroundShadow, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="HasItems" Value="false">
                             <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
                         </Trigger>
@@ -340,11 +340,11 @@
                                 Margin="1"
                                 PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
                                 Placement="Bottom">
-                                <Themes:SystemDropShadowChrome
+                                <!--<Themes:SystemDropShadowChrome
                                     x:Name="shadow"
                                     Color="Transparent"
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}">-->
                                     <Border
                                         x:Name="dropDownBorder"
                                         BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
@@ -367,7 +367,7 @@
                                             </Grid>
                                         </ScrollViewer>
                                     </Border>
-                                </Themes:SystemDropShadowChrome>
+                                <!--</Themes:SystemDropShadowChrome>-->
                             </Popup>
                             <ToggleButton
                                 x:Name="toggleButton"
@@ -431,10 +431,10 @@
                             <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
-                        <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
+                        <!--<Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                             <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                             <Setter Property="Color" TargetName="shadow" Value="{Binding ComboBoxListBackgroundShadow, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="HasItems" Value="false">
                             <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
                         </Trigger>
@@ -485,11 +485,11 @@
                                 Margin="1"
                                 PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
                                 Placement="Bottom">
-                                <Themes:SystemDropShadowChrome
+                                <!--<Themes:SystemDropShadowChrome
                                     x:Name="shadow"
                                     Color="Transparent"
                                     MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}">-->
                                     <Border
                                         x:Name="dropDownBorder"
                                         BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
@@ -512,7 +512,7 @@
                                             </Grid>
                                         </ScrollViewer>
                                     </Border>
-                                </Themes:SystemDropShadowChrome>
+                                <!--</Themes:SystemDropShadowChrome>-->
                             </Popup>
                             <ToggleButton
                                 x:Name="toggleButton"
@@ -576,10 +576,10 @@
                             <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
-                        <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
+                        <!--<Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                             <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                             <Setter Property="Color" TargetName="shadow" Value="{Binding ComboBoxListBackgroundShadow, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="HasItems" Value="false">
                             <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
                         </Trigger>

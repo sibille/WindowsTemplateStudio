@@ -8,7 +8,6 @@ using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -99,25 +98,25 @@ namespace Microsoft.Templates.UI.Services
             return 0;
         }
 
-        public static bool HasAllVisualStudioWorkloads(IEnumerable<string> workloadIds)
-        {
-            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
+        //public static bool HasAllVisualStudioWorkloads(IEnumerable<string> workloadIds)
+        //{
+        //    var vsShell = GenContext.ToolBox.Shell as VsGenShell;
 
-            // If not in VS then assume all workloads are available.
-            if (vsShell != null && vsShell.GetInstalledPackageIds().Any())
-            {
-                var installedIds = vsShell.GetInstalledPackageIds();
+        //    // If not in VS then assume all workloads are available.
+        //    if (vsShell != null && vsShell.GetInstalledPackageIds().Any())
+        //    {
+        //        var installedIds = vsShell.GetInstalledPackageIds();
 
-                foreach (var workloadId in workloadIds)
-                {
-                    if (!installedIds.Contains(workloadId))
-                    {
-                        return false;
-                    }
-                }
-            }
+        //        foreach (var workloadId in workloadIds)
+        //        {
+        //            if (!installedIds.Contains(workloadId))
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

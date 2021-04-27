@@ -17,7 +17,6 @@ using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.UI.VisualStudio;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {

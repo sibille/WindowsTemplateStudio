@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using VSIntegration.Resources;
 using Task = System.Threading.Tasks.Task;
 
 namespace Microsoft.Templates.UI.VisualStudio

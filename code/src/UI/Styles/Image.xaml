@@ -52,7 +52,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <Style TargetType="imaging:CrispImage" x:Key="WtsCrispImageCardDeprecatedIcon">
+    <!--<Style TargetType="imaging:CrispImage" x:Key="WtsCrispImageCardDeprecatedIcon">
         <Setter Property="Height" Value="16" />
         <Setter Property="Width" Value="16" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -64,6 +64,6 @@
         <Setter Property="Width" Value="20" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="{StaticResource Margin_S_Right}" />
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>
