@@ -16,6 +16,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Views.Common;
+using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.TemplateWizard;
 using CoreStringRes = Microsoft.Templates.Core.Resources.StringRes;
 using UIStringRes = Microsoft.Templates.UI.Resources.StringRes;
@@ -39,7 +40,7 @@ namespace Microsoft.Templates.UI.Launcher
             _styleProvider = provider;
 
             CheckVSVersion(context.Platform, requiredVSVersion);
-            //CheckForMissingWorkloads(context.Platform, requiredWorkloads);
+            CheckForMissingWorkloads(context.Platform, requiredWorkloads);
             CheckForInvalidProjectName();
 
             var newProjectView = new Views.NewProject.WizardShell(context, provider);
@@ -152,36 +153,36 @@ namespace Microsoft.Templates.UI.Launcher
             }
         }
 
-        //private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
-        //{
-        //    var vsShell = GenContext.ToolBox.Shell as VsGenShell;
-        //    if (vsShell != null)
-        //    {
-        //        var workloadsToCheck = requiredWorkloads.Split('|');
-        //        var missingWorkloads = new List<string>();
+        private void CheckForMissingWorkloads(string platform, string requiredWorkloads)
+        {
+            var vsShell = GenContext.ToolBox.Shell as VsGenShell;
+            if (vsShell != null)
+            {
+                var workloadsToCheck = requiredWorkloads.Split('|');
+                var missingWorkloads = new List<string>();
 
-        //        foreach (var workload in workloadsToCheck)
-        //        {
-        //            if (!vsShell.GetInstalledPackageIds().Contains(workload))
-        //            {
-        //                missingWorkloads.Add(workload.GetRequiredWorkloadDisplayName());
-        //            }
-        //        }
+                foreach (var workload in workloadsToCheck)
+                {
+                    if (!vsShell.GetInstalledPackageIds().Contains(workload))
+                    {
+                        missingWorkloads.Add(workload.GetRequiredWorkloadDisplayName());
+                    }
+                }
 
-        //        if (missingWorkloads.Count > 0)
-        //        {
-        //            var title = UIStringRes.InfoDialogMissingWorkloadTitle;
-        //            var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i, j) => $"{i}, {j}") );
-        //            var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
+                if (missingWorkloads.Count > 0)
+                {
+                    var title = UIStringRes.InfoDialogMissingWorkloadTitle;
+                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i, j) => $"{i}, {j}"));
+                    var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
-        //            var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
-        //            var info = new Views.Common.InfoDialog(vm);
-        //            GenContext.ToolBox.Shell.ShowModal(info);
+                    var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
+                    var info = new Views.Common.InfoDialog(vm);
+                    GenContext.ToolBox.Shell.ShowModal(info);
 
-        //            CancelWizard();
-        //        }
-        //    }
-        //}
+                    CancelWizard();
+                }
+            }
+        }
 
         private void CheckForInvalidProjectName()
         {

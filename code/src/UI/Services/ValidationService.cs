@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.UI.Threading;
 using Newtonsoft.Json;
 
 namespace Microsoft.Templates.UI.Services

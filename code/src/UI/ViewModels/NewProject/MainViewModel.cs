@@ -16,7 +16,6 @@ using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewProject;
@@ -47,7 +46,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public CompositionToolViewModel CompositionTool { get; } = new CompositionToolViewModel();
 
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
-             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesCacheAsync())));
+             async () => await OnRefreshTemplatesCacheAsync()));
 
         public RelayCommand CompositionToolCommand => _compositionToolCommand ?? (_compositionToolCommand = new RelayCommand(() => OnCompositionTool()));
 
@@ -212,16 +211,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private async Task OnProjectTypeSelectedAsync()
         {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
             Context.ProjectType = ProjectType.Selected.Name;
             await Framework.LoadDataAsync(Context);
         }
 
         private async Task OnFrameworkSelectedAsync()
         {
-            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
             Context.FrontEndFramework = Framework.Selected.Name;
 
             UserSelection.Initialize(Context);

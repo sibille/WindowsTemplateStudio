@@ -9,16 +9,26 @@
     <Import_RootNamespace>WizardShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Styles\BaseStyleValuesProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Styles\VSStyleValuesProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Threading\SafeThreading.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\IPackageInstallerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\RightClickActions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\RightClickAvailability.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardCppWinUIUwp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardCS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardCSWinUIDesktop.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardCSWinUIUwp.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardCSWpf.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\SolutionWizardVB.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsGenShell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsOutputPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsShellExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsTelemetryEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VsTelemetryProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\VSTelemetryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VisualStudio\WizardLauncher.cs" />
   </ItemGroup>
 </Project>

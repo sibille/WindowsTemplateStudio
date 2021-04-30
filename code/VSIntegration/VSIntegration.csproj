@@ -90,6 +90,10 @@
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\src\UI\UI.csproj">
+      <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
+      <Name>UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="TestKey.snk" />

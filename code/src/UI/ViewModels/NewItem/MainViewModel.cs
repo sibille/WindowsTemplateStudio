@@ -17,7 +17,6 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewItem;
@@ -46,7 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
 
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
-            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+             async () => await OnRefreshTemplatesAsync()));
 
         public Visibility RefreshTemplateCacheVisibility
         {

@@ -95,7 +95,6 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Launcher\WizardLauncher.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
@@ -174,6 +173,7 @@
     <Compile Include="Services\RequiredVersionValidation\IRequirementValidator.cs" />
     <Compile Include="Services\RequiredVersionValidation\RequiredVersionService.cs" />
     <Compile Include="Services\RequiredVersionValidation\Validators\WindowsSDKValidator.cs" />
+    <Compile Include="Services\Styles\BaseStyleValuesProvider.cs" />
     <Compile Include="Services\Styles\UIStylesService.ThemedDialog.cs" />
     <Compile Include="Services\Styles\UIStylesService.Styles.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
@@ -327,16 +327,6 @@
     <Compile Include="Views\NewProject\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VisualStudio\RightClickActions.cs" />
-    <Compile Include="VisualStudio\RightClickAvailability.cs" />
-    <Compile Include="VisualStudio\SolutionWizard.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCppWinUIDesktop.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCppWinUIUwp.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCS.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWinUIDesktop.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWinUIUwp.cs" />
-    <Compile Include="VisualStudio\SolutionWizardCSWpf.cs" />
-    <Compile Include="VisualStudio\SolutionWizardVB.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">
@@ -358,10 +348,6 @@
     <ProjectReference Include="..\..\CoreTemplateStudio\code\src\Utilities\Utilities.csproj">
       <Project>{356eadb6-d826-494d-b5e1-41245159d5ae}</Project>
       <Name>Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\VSIntegration\VSIntegration.csproj">
-      <Project>{61f096b6-f1e1-484e-8c1d-172d77e2aed4}</Project>
-      <Name>VSIntegration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -806,6 +792,10 @@
     <PackageReference Include="WriteableBitmapEx">
       <Version>1.6.7</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Launcher\" />
+    <Folder Include="VisualStudio\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

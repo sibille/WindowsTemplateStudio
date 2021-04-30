@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -23,17 +22,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public T Selected
         {
             get => _selected;
-            set => SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+            set => SelectItem(value);
+        }
+
+        private void SelectItem(T value)
+        {
+            try
             {
-                try
-                {
-                    await SelectAsync(value);
-                }
-                catch (Exception ex)
-                {
-                    _dialogService.ShowError(ex);
-                }
-            });
+                Select(value);
+            }
+            catch (Exception ex)
+            {
+                _dialogService.ShowError(ex);
+            }
         }
 
         public ObservableCollection<T> Items { get; } = new ObservableCollection<T>();
@@ -44,7 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _onSelected = onSelected;
         }
 
-        private async Task<bool> SelectAsync(T value)
+        private bool Select(T value)
         {
             if (value != null)
             {
@@ -65,7 +66,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     OnPropertyChanged(nameof(Selected));
                     if (_onSelected != null)
                     {
-                        await _onSelected?.Invoke();
+                        _onSelected?.Invoke();
                     }
 
                     return true;

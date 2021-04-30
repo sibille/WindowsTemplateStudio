@@ -30,7 +30,7 @@
     </CustomParameters>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>Microsoft.Templates.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
+    <Assembly>VSIntegration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e4ef4cc7a47ae0c5</Assembly>
     <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizardCSWinUIDesktop</FullClassName>
   </WizardExtension>
 </VSTemplate>

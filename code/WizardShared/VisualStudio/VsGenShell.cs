@@ -374,6 +374,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public async Task<string> GetActiveProjectLanguageAsync()
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var p = await GetActiveProjectAsync();
 
             if (p != null)
